@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_covid19_tracker/services/states_services.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../services/utilities/routes_names.dart';
 import 'detail_screen.dart';
 
 class CountriesList extends StatefulWidget {
@@ -85,22 +86,18 @@ class _CountriesListState extends State<CountriesList> {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => DetailScreen(
-                                                title: snapshot.data![index]
-                                                    ['country'],
-                                                flag: data['countryInfo']
-                                                    ['flag'],
-                                                totalCases: data['cases'],
-                                                deaths: data['deaths'],
-                                                recovered: data['recovered'],
-                                                critical: data['critical'],
-                                                tests: data['tests'],
-                                                todayRecovered:
-                                                    data['todayRecovered'],
-                                              )));
+                                  Navigator.pushNamed(
+                                      context, RoutesName.detailScreen,
+                                      arguments: {
+                                        'title': data['country'],
+                                        'flag': data['countryInfo']['flag'],
+                                        'totalCases': data['cases'],
+                                        'deaths': data['deaths'],
+                                        'recovered': data['recovered'],
+                                        'critical': data['critical'],
+                                        'tests': data['tests'],
+                                        'todayRecovered': data['todayRecovered']
+                                      });
                                 },
                                 child: ListTile(
                                   leading: Image(
@@ -122,21 +119,18 @@ class _CountriesListState extends State<CountriesList> {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => DetailScreen(
-                                                title: data['country'],
-                                                flag: data['countryInfo']
-                                                    ['flag'],
-                                                totalCases: data['cases'],
-                                                deaths: data['deaths'],
-                                                recovered: data['recovered'],
-                                                critical: data['critical'],
-                                                tests: data['tests'],
-                                                todayRecovered:
-                                                    data['todayRecovered'],
-                                              )));
+                                  Navigator.pushNamed(
+                                      context, RoutesName.detailScreen,
+                                      arguments: {
+                                        'title': data['country'],
+                                        'flag': data['countryInfo']['flag'],
+                                        'totalCases': data['cases'],
+                                        'deaths': data['deaths'],
+                                        'recovered': data['recovered'],
+                                        'critical': data['critical'],
+                                        'tests': data['tests'],
+                                        'todayRecovered': data['todayRecovered']
+                                      });
                                 },
                                 child: ListTile(
                                   leading: Image(

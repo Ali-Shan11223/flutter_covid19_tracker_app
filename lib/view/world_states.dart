@@ -4,6 +4,7 @@ import 'package:flutter_covid19_tracker/services/states_services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:pie_chart/pie_chart.dart';
 
+import '../services/utilities/routes_names.dart';
 import '../widgets/states_row.dart';
 import 'countries_list.dart';
 
@@ -58,6 +59,8 @@ class _WorldStatesState extends State<WorldStates>
                     );
                   } else {
                     return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      
                       children: [
                         PieChart(
                           dataMap: {
@@ -114,11 +117,8 @@ class _WorldStatesState extends State<WorldStates>
                         ),
                         InkWell(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const CountriesList()));
+                            Navigator.pushNamed(
+                                context, RoutesName.countriesList);
                           },
                           child: Container(
                             height: 50,

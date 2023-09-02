@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 
 class StatesRow extends StatelessWidget {
-  final  title;
-  final  value;
+  final dynamic title;
+  final dynamic value;
   const StatesRow({super.key, required this.title, required this.value});
 
   @override

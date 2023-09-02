@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import '../widgets/states_row.dart';
 
 class DetailScreen extends StatefulWidget {
-  final String title;
-  final String flag;
-  final int totalCases;
-  final int deaths;
-  final int recovered;
-  final int critical;
-  final int todayRecovered;
-  final int tests;
+  dynamic  title;
+  dynamic  flag;
+  dynamic totalCases;
+  dynamic deaths;
+  dynamic recovered;
+  dynamic critical;
+  dynamic todayRecovered;
+  dynamic tests;
 
-  const DetailScreen(
+   DetailScreen(
       {super.key,
       required this.title,
       required this.flag,
@@ -33,7 +33,7 @@ class _DetailScreenState extends State<DetailScreen> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title['title']),
       ),
       body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -51,24 +51,24 @@ class _DetailScreenState extends State<DetailScreen> {
                       ),
                       StatesRow(
                           title: 'Total Cases',
-                          value: widget.totalCases.toString()),
+                          value: widget.totalCases['totalCases'].toString()),
                       StatesRow(
-                          title: 'Deaths', value: widget.deaths.toString()),
+                          title: 'Deaths', value: widget.deaths['deaths'].toString()),
                       StatesRow(
                           title: 'Recovered',
-                          value: widget.recovered.toString()),
+                          value: widget.recovered['recovered'].toString()),
                       StatesRow(
-                          title: 'Critical', value: widget.critical.toString()),
+                          title: 'Critical', value: widget.critical['critical'].toString()),
                       StatesRow(
                           title: 'Today Recovered',
-                          value: widget.todayRecovered.toString()),
-                      StatesRow(title: 'Tests', value: widget.tests.toString()),
+                          value: widget.todayRecovered['todayRecovered'].toString()),
+                      StatesRow(title: 'Tests', value: widget.tests['tests'].toString()),
                     ]),
                   ),
                 ),
                 CircleAvatar(
                   radius: 30,
-                  backgroundImage: NetworkImage(widget.flag),
+                  backgroundImage: NetworkImage(widget.flag['flag']),
                 )
               ],
             )
