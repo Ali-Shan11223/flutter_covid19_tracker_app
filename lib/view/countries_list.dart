@@ -1,8 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_covid19_tracker/services/states_services.dart';
 import 'package:shimmer/shimmer.dart';
+
+import 'detail_screen.dart';
 
 class CountriesList extends StatefulWidget {
   const CountriesList({super.key});
@@ -24,10 +24,8 @@ class _CountriesListState extends State<CountriesList> {
           padding: const EdgeInsets.all(10),
           child: TextFormField(
             controller: _searchController,
-            onChanged: (value){
-              setState(() {
-                
-              });
+            onChanged: (value) {
+              setState(() {});
             },
             decoration: InputDecoration(
               hintText: 'Search country name',
@@ -85,15 +83,35 @@ class _CountriesListState extends State<CountriesList> {
                         if (_searchController.text.isEmpty) {
                           return Column(
                             children: [
-                              ListTile(
-                                leading: Image(
-                                  height: 50,
-                                  width: 50,
-                                  image:
-                                      NetworkImage(data['countryInfo']['flag']),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => DetailScreen(
+                                                title: snapshot.data![index]
+                                                    ['country'],
+                                                flag: data['countryInfo']
+                                                    ['flag'],
+                                                totalCases: data['cases'],
+                                                deaths: data['deaths'],
+                                                recovered: data['recovered'],
+                                                critical: data['critical'],
+                                                tests: data['tests'],
+                                                todayRecovered:
+                                                    data['todayRecovered'],
+                                              )));
+                                },
+                                child: ListTile(
+                                  leading: Image(
+                                    height: 50,
+                                    width: 50,
+                                    image: NetworkImage(
+                                        data['countryInfo']['flag']),
+                                  ),
+                                  title: Text(data['country']),
+                                  subtitle: Text(data['cases'].toString()),
                                 ),
-                                title: Text(data['country']),
-                                subtitle: Text(data['cases'].toString()),
                               )
                             ],
                           );
@@ -102,15 +120,34 @@ class _CountriesListState extends State<CountriesList> {
                             .contains(_searchController.text.toLowerCase())) {
                           return Column(
                             children: [
-                              ListTile(
-                                leading: Image(
-                                  height: 50,
-                                  width: 50,
-                                  image:
-                                      NetworkImage(data['countryInfo']['flag']),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => DetailScreen(
+                                                title: data['country'],
+                                                flag: data['countryInfo']
+                                                    ['flag'],
+                                                totalCases: data['cases'],
+                                                deaths: data['deaths'],
+                                                recovered: data['recovered'],
+                                                critical: data['critical'],
+                                                tests: data['tests'],
+                                                todayRecovered:
+                                                    data['todayRecovered'],
+                                              )));
+                                },
+                                child: ListTile(
+                                  leading: Image(
+                                    height: 50,
+                                    width: 50,
+                                    image: NetworkImage(
+                                        data['countryInfo']['flag']),
+                                  ),
+                                  title: Text(data['country']),
+                                  subtitle: Text(data['cases'].toString()),
                                 ),
-                                title: Text(data['country']),
-                                subtitle: Text(data['cases'].toString()),
                               )
                             ],
                           );
